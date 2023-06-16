@@ -27,16 +27,32 @@
   <div class="container">
     <h2>Calculateur de résultats</h2>
     <div class="form-group">
-      <label for="test1">Résultat Test 1 (en secondes) :</label>
-      <input type="number" id="test1" step="1" min="0" required>
+      <label for="minutes1">Minutes Test 1 :</label>
+      <input type="number" id="minutes1" step="1" min="0" required>
     </div>
     <div class="form-group">
-      <label for="test2">Résultat Test 2 (en secondes) :</label>
-      <input type="number" id="test2" step="1" min="0" required>
+      <label for="secondes1">Secondes Test 1 :</label>
+      <input type="number" id="secondes1" step="1" min="0" max="59" required>
+    </div>
+    <div class="form-group">
+      <label for="centiemes1">Centièmes Test 1 :</label>
+      <input type="number" id="centiemes1" step="1" min="0" max="99" required>
+    </div>
+    <div class="form-group">
+      <label for="minutes2">Minutes Test 2 :</label>
+      <input type="number" id="minutes2" step="1" min="0" required>
+    </div>
+    <div class="form-group">
+      <label for="secondes2">Secondes Test 2 :</label>
+      <input type="number" id="secondes2" step="1" min="0" max="59" required>
+    </div>
+    <div class="form-group">
+      <label for="centiemes2">Centièmes Test 2 :</label>
+      <input type="number" id="centiemes2" step="1" min="0" max="99" required>
     </div>
     <div class="form-group">
       <label for="test3">Résultat Test 3 (note sur 20) :</label>
-      <input type="number" id="test3" step="0.1" min="0" required>
+      <input type="number" id="test3" step="0.01" min="0" required>
     </div>
     <div class="form-group">
       <button class="btn" onclick="calculer()">Calculer</button>
@@ -47,12 +63,21 @@
   <script>
     // JavaScript
     function calculer() {
-      var test1 = parseFloat(document.getElementById('test1').value);
-      var test2 = parseFloat(document.getElementById('test2').value);
+      var minutes1 = parseFloat(document.getElementById('minutes1').value);
+      var secondes1 = parseFloat(document.getElementById('secondes1').value);
+      var centiemes1 = parseFloat(document.getElementById('centiemes1').value);
+
+      var minutes2 = parseFloat(document.getElementById('minutes2').value);
+      var secondes2 = parseFloat(document.getElementById('secondes2').value);
+      var centiemes2 = parseFloat(document.getElementById('centiemes2').value);
+
       var test3 = parseFloat(document.getElementById('test3').value);
 
-      var pourcentage1 = (test1 / 60) * 99.9;
-      var pourcentage2 = (test2 / 70) * 99.9;
+      var temps1 = minutes1 * 6000 + secondes1 * 100 + centiemes1;
+      var temps2 = minutes2 * 6000 + secondes2 * 100 + centiemes2;
+
+      var pourcentage1 = (temps1 / 600000) * 99.9;
+      var pourcentage2 = (temps2 / 600000) * 99.9;
       var pourcentage3 = (test3 / 20) * 99.9;
 
       var moyenne = (pourcentage1 + pourcentage2 + pourcentage3) / 3;
