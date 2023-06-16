@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculateur de résultats</title>
+  <style>
+    /* Styles CSS */
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Calculateur de résultats</h2>
+    <div class="form-group">
+      <label for="test1">Résultat Test 1 (en secondes) :</label>
+      <input type="number" id="test1" step="1" min="0" required>
+    </div>
+    <div class="form-group">
+      <label for="test2">Résultat Test 2 (en secondes) :</label>
+      <input type="number" id="test2" step="1" min="0" required>
+    </div>
+    <div class="form-group">
+      <label for="test3">Résultat Test 3 (note sur 20) :</label>
+      <input type="number" id="test3" step="0.1" min="0" required>
+    </div>
+    <div class="form-group">
+      <button class="btn" onclick="calculer()">Calculer</button>
+    </div>
+    <div id="resultat"></div>
+  </div>
+
+  <script>
+    // JavaScript
+    function calculer() {
+      var test1 = parseFloat(document.getElementById('test1').value);
+      var test2 = parseFloat(document.getElementById('test2').value);
+      var test3 = parseFloat(document.getElementById('test3').value);
+
+      var pourcentage1 = (test1 / 60) * 99.9;
+      var pourcentage2 = (test2 / 70) * 99.9;
+      var pourcentage3 = (test3 / 20) * 99.9;
+
+      var moyenne = (pourcentage1 + pourcentage2 + pourcentage3) / 3;
+
+      var resultatDiv = document.getElementById('resultat');
+      resultatDiv.innerHTML = 'Résultat final : ' + moyenne.toFixed(2) + '%';
+    }
+  </script>
+</body>
+</html>
